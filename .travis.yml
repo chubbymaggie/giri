@@ -4,7 +4,7 @@ compiler: gcc
 
 os: linux
 
-env: LLVM_HOME=$HOME/llvm BuildMode=Release+Asserts
+env: LLVM_HOME=$HOME/llvm BuildMode=Release+Asserts TEST_PARALLELISM=seq TEST_LOG=test.log
 
 before_script:
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
@@ -14,6 +14,7 @@ before_script:
 
 script:
   - sudo -E utils/install_llvm.sh
+  - export PATH=/usr/local/bin:$PATH
   - utils/build.sh
 
 cache:
